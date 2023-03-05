@@ -5,8 +5,8 @@ apply plugin: 'eclipse'
 
 group = 'org.jpos.template'
 version = '2.1.8-SNAPSHOT'
-sourceCompatibility = 11
-targetCompatibility = 11
+sourceCompatibility = 8
+targetCompatibility = 8
 
 repositories {
     mavenCentral()
@@ -16,6 +16,8 @@ repositories {
 
 dependencies {
     implementation 'org.jpos:jpos:2.1.8-SNAPSHOT'
+    implementation 'org.jpos.ee:jposee-server-simulator:2.0.2-SNAPSHOT'
+    implementation 'org.jpos.ee:jposee-client-simulator:2.2.1-SNAPSHOT'
 }
 
 apply from: 'jpos-app.gradle'
