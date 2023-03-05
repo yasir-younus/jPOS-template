@@ -32,4 +32,6 @@ public class RouteToDestination implements TransactionParticipant, Configurable 
 	public void setConfiguration(Configuration cfg) {
 		this.cfg = cfg;
 	}	
+	
+	
 }
