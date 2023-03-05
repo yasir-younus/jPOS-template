@@ -24,6 +24,7 @@ public class RouteToDestination implements TransactionParticipant, Configurable 
 				}
 			} catch (InvalidCardException ignore) {
 				// use default destination
+				System.out.println("just defaults to jpos-AUTORESPONDER mux");
 			}
 		}
 		return PREPARED | NO_JOIN | READONLY;
