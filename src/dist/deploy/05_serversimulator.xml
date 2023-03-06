@@ -16,7 +16,7 @@
   ~ You should have received a copy of the GNU Affero General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
-
+<!-- 
 <server class="org.jpos.q2.iso.QServer" logger="Q2"
   name="simulator_10000">
  <attr name="port" type="java.lang.Integer">10000</attr>
@@ -26,5 +26,5 @@
  <request-listener class="org.jpos.bsh.BSHRequestListener" logger="Q2">
   <property name="source" value="cfg/serversimulator.bsh" />
  </request-listener>
-</server>
+</server> -->
 

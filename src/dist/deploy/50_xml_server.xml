@@ -6,6 +6,7 @@
              logger="Q2"
              realm="xml-server-8000">
         <property name="timeout" value="180000"/>
+        <!-- <property name="packager-config" value="cfg/packager/isoebcdic-field39.xml"/> -->
     </channel>
     <request-listener class="org.jpos.iso.IncomingListener" logger="Q2" realm="incoming-request-listener">
         <property name="queue"  value="TXNMGR" />

@@ -1,6 +1,6 @@
-<?xml version="1.0" ?>
+<!-- <?xml version="1.0" ?>
 
-<!--
+
   ~ jPOS Project [http://jpos.org]
   ~ Copyright (C) 2000-2012 Alejandro P. Revilla
   ~
@@ -16,7 +16,7 @@
   ~
   ~ You should have received a copy of the GNU Affero General Public License
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
+ 
 
 <channel-adaptor name='clientsimulator-adaptor'
     class="org.jpos.q2.iso.ChannelAdaptor" logger="Q2">
@@ -26,9 +26,13 @@
   <property name="packager-config" value="cfg/packager/isoebcdic-field39.xml"/>
   <property name="host" value="146.190.206.247" />
   <property name="port" value="4446" />
+  
+  <property name="host" value="127.0.0.1" />
+  <property name="port" value="8000" />
  </channel>
  <in>clientsimulator-send</in>
  <out>clientsimulator-receive</out>
  <reconnect-delay>10000</reconnect-delay>
 </channel-adaptor>
 
+ -->
