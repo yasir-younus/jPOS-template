@@ -5,6 +5,10 @@
     <property name="max-sessions" value="128"/>
     <property name="debug" value="true"/>
 
+	<!-- <participant class="com.field39.RouteToDestination">
+		<property name="dest" value="remote-mux" />
+	</participant> -->
+
     <participant class="org.jpos.transaction.participant.QueryHost"/>
     <participant class="org.jpos.transaction.participant.SendResponse"/>
 </txnmgr>

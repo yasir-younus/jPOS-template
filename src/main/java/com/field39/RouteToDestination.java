@@ -15,18 +15,24 @@ public class RouteToDestination implements TransactionParticipant, Configurable 
 	public int prepare(long id, Serializable context) {
 		Context ctx = (Context) context;
 		ISOMsg m = (ISOMsg) ctx.get(ContextConstants.REQUEST.toString());
-		if (m != null && (m.hasField(2) || m.hasField(35))) {
-			try {
-				Card card = Card.builder().isomsg(m).build();
-				String s = cfg.get("bin." + card.getBin(), null);
-				if (s != null) {
-					ctx.put(ContextConstants.DESTINATION.toString(), s);
-				}
-			} catch (InvalidCardException ignore) {
-				// use default destination
-				System.out.println("just defaults to jpos-AUTORESPONDER mux");
-			}
+//		if (m != null && (m.hasField(2) || m.hasField(35))) {
+//			try {
+//				Card card = Card.builder().isomsg(m).build();
+//				String s = cfg.get("bin." + card.getBin(), null);
+//				if (s != null) {
+//					ctx.put(ContextConstants.DESTINATION.toString(), s);
+//				}
+//			} catch (InvalidCardException ignore) {
+//				// use default destination
+//				System.out.println("just defaults to jpos-AUTORESPONDER mux");
+//			}
+//		}
+		
+		String s = cfg.get("dest", null);
+		if (s != null) {
+			ctx.put(ContextConstants.DESTINATION.toString(), s);
 		}
+		
 		return PREPARED | NO_JOIN | READONLY;
 	}
 

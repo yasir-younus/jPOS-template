@@ -7,12 +7,21 @@ import org.jpos.iso.ISOMsg;
 import org.jpos.iso.ISOPackager;
 import org.jpos.iso.ISOUtil;
 import org.jpos.iso.channel.ASCIIChannel;
+import org.jpos.iso.channel.BCDChannel;
+import org.jpos.iso.channel.NACChannel;
 import org.jpos.iso.channel.XMLChannel;
 import org.jpos.iso.packager.GenericPackager;
 import org.jpos.iso.packager.ISO87BPackager;
 import org.jpos.iso.packager.XMLPackager;
 
 public class EchoRequest {
+
+	final static String env = "local";
+//	final static String env = "remote";
+	final static String rhost = "146.190.206.247";
+	final static String lhost = "127.0.0.1";
+	final static int rport = 4446;
+	final static int lport = 10000;
 
 	public static void main(String[] args) throws IOException, ISOException {
 		
@@ -22,42 +31,48 @@ public class EchoRequest {
 	
 		
 		ISOMsg ISOMsgEBCDIC = new ISOMsg();
-		ISOMsgEBCDIC = prepareISOMsg(packagerEBCDIC, ISOMsgEBCDIC);
+		ISOMsgEBCDIC = prepareEchoMsg(packagerEBCDIC, ISOMsgEBCDIC);
 		
 		
-		ISOMsg ISOMsgB = new ISOMsg();
-		ISOMsgB = prepareISOMsg(packagerISO87, ISOMsgB);
+		ISOMsg ISOMsgASCII = new ISOMsg();
+		ISOMsgASCII = prepareEchoMsg(packagerISO87, ISOMsgASCII);
 		
 		
 		ISOMsg ISOMsgXML = new ISOMsg();
-		ISOMsgXML = prepareISOMsg(xmlPackager, ISOMsgXML);
+		ISOMsgXML = prepareEchoMsg(xmlPackager, ISOMsgXML);
 		
 		
 		//System.out.println(ISOUtil.hexdump(ISOMsgEBCDIC.getBytes()));
-		print("EBCDIC presentation", ISOMsgEBCDIC);
+//		print("EBCDIC presentation", ISOMsgEBCDIC);
         
 //        System.out.println("Sending ebcdic message to localhost:9000\n\n");
-//		ASCIIChannel channelEBCDIC = new ASCIIChannel("localhost", 9000, packagerEBCDIC);
+		print("EBCDIC presentation", ISOMsgEBCDIC);
+//		EBCDICChannel channelEBCDIC = new EBCDICChannel(getHost(), getPort(), packagerEBCDIC);
 //        channelEBCDIC.connect();
 //		channelEBCDIC.send(ISOMsgEBCDIC);
         
-		print("ASCII presentation", ISOMsgB);
 		
-//        System.out.println("Sending ascii message to localhost:8000");
-//        ASCIIChannel channelASCII = new ASCIIChannel("localhost", 8000, packagerISO87);
+//		print("ASCII presentation", ISOMsgASCII);		
+////        System.out.println("Sending ascii message to localhost:8000");
+//        ASCIIChannel channelASCII = new ASCIIChannel(getHost(), getPort(), packagerISO87);
 //        channelASCII.connect();
-//		channelASCII.send(ISOMsgXML);
+//		channelASCII.send(ISOMsgASCII);
 		
-		print("XML based packager", ISOMsgXML);
-		System.out.println("Sending XML based message to localhost:8000");
-//        XMLChannel channelASCII = new XMLChannel("localhost", 8000, xmlPackager);
-//        channelASCII.connect();
-//		channelASCII.send(ISOMsgXML);
-		
-		
-		
+//		print("XML based packager", ISOMsgXML);
+////		System.out.println("Sending XML based message to");
+//        XMLChannel channelXML = new XMLChannel(getHost(), getPort(), xmlPackager);
+//        channelXML.connect();
+//		channelXML.send(ISOMsgXML);
 		
 
+	}
+	
+	private static String getHost() {
+		return (env.equals("remote")) ? rhost : lhost;
+	}
+	
+	private static int getPort() {
+		return (env.equals("remote")) ? rport : lport;
 	}
 	
 	private static void print(String message, ISOMsg m) throws ISOException {
@@ -68,7 +83,7 @@ public class EchoRequest {
         System.out.println(ISOUtil.hexdump(data));
 	}
 	
-	private static ISOMsg prepareISOMsg(ISOPackager p, ISOMsg m) throws ISOException {
+	private static ISOMsg prepareEchoMsg(ISOPackager p, ISOMsg m) throws ISOException {
 		
 		m.setPackager(p);
 		m.setMTI("0800");
